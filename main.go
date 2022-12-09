@@ -8,10 +8,10 @@ import (
 )
 
 func main() {
-	bytes, err := os.ReadFile("./inputs/day3.txt")
+	bytes, err := os.ReadFile("./inputs/day5.txt")
 	if err != nil {
 		log.Fatal("input file could not be read")
 	}
 
-	puzzles.Day3(string(bytes))
+	puzzles.Day5(string(bytes))
 }
