@@ -20,7 +20,7 @@ func compareSlices(slice1, slice2 []int) bool {
 	return true
 }
 
-func TestNewIntSet_Should_CreateASetOfUniqueElements(t *testing.T) {
+func TestNewSet_Should_CreateASetOfUniqueElements(t *testing.T) {
 	tests := []struct {
 		input    []int
 		expected []int
@@ -36,7 +36,7 @@ func TestNewIntSet_Should_CreateASetOfUniqueElements(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		result := shared.NewIntSet(test.input)
+		result := shared.NewSet(test.input)
 
 		if !compareSlices(result.Elements, test.expected) {
 			t.Fatalf("Expected %v, Got %v\n", test.expected, result.Elements)
@@ -63,7 +63,7 @@ func TestAdd_Should_AddElementsToTheSet(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		set := shared.NewIntSet(test.initial)
+		set := shared.NewSet(test.initial)
 
 		set.Add(test.newElement)
 
@@ -92,7 +92,7 @@ func TestContains_ShouldCheckWhetherAnElementIsInTheSet(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		set := shared.NewIntSet(test.initial)
+		set := shared.NewSet(test.initial)
 
 		if set.Contains(test.checkedElement) != test.expected {
 			if test.expected {
@@ -125,8 +125,8 @@ func TestIsSubsetOf_ShouldCheckWhetherTheSetIsASubsetOfTheGivenSet(t *testing.T)
 	}
 
 	for _, test := range tests {
-		set := shared.NewIntSet(test.set)
-		other := shared.NewIntSet(test.other)
+		set := shared.NewSet(test.set)
+		other := shared.NewSet(test.other)
 
 		if set.IsSubsetOf(other) != test.expected {
 			if test.expected {
@@ -164,8 +164,8 @@ func TestIntersection_Should_ReturnTheIntersectionOfTheSets(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		set := shared.NewIntSet(test.set)
-		other := shared.NewIntSet(test.other)
+		set := shared.NewSet(test.set)
+		other := shared.NewSet(test.other)
 
 		result := set.Intersection(other)
 

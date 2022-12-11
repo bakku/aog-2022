@@ -1,10 +1,10 @@
 package shared
 
-type IntSet struct {
-	Elements []int
+type Set[T comparable] struct {
+	Elements []T
 }
 
-func (set *IntSet) Contains(n int) bool {
+func (set *Set[T]) Contains(n T) bool {
 	for _, element := range set.Elements {
 		if element == n {
 			return true
@@ -14,13 +14,13 @@ func (set *IntSet) Contains(n int) bool {
 	return false
 }
 
-func (set *IntSet) Add(n int) {
+func (set *Set[T]) Add(n T) {
 	if !set.Contains(n) {
 		set.Elements = append(set.Elements, n)
 	}
 }
 
-func (set *IntSet) IsSubsetOf(other *IntSet) bool {
+func (set *Set[T]) IsSubsetOf(other *Set[T]) bool {
 	for _, setElement := range set.Elements {
 		currentElementContained := false
 
@@ -38,8 +38,8 @@ func (set *IntSet) IsSubsetOf(other *IntSet) bool {
 	return true
 }
 
-func (set *IntSet) Intersection(other *IntSet) *IntSet {
-	result := []int{}
+func (set *Set[T]) Intersection(other *Set[T]) *Set[T] {
+	result := []T{}
 
 	for _, setElement := range set.Elements {
 		for _, otherElement := range other.Elements {
@@ -49,16 +49,16 @@ func (set *IntSet) Intersection(other *IntSet) *IntSet {
 		}
 	}
 
-	return NewIntSet(result)
+	return NewSet(result)
 }
 
-func (set *IntSet) Size() int {
+func (set *Set[T]) Size() int {
 	return len(set.Elements)
 }
 
-func NewIntSet(elements []int) *IntSet {
-	s := &IntSet{
-		Elements: make([]int, 0),
+func NewSet[T comparable](elements []T) *Set[T] {
+	s := &Set[T]{
+		Elements: make([]T, 0),
 	}
 
 	for _, n := range elements {

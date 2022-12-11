@@ -30,8 +30,8 @@ func Day4(input string) {
 		firstPair := strings.Split(pair, ",")[0]
 		secondPair := strings.Split(pair, ",")[1]
 
-		firstSet := shared.NewIntSet(pairToIntArray(firstPair))
-		secondSet := shared.NewIntSet(pairToIntArray(secondPair))
+		firstSet := shared.NewSet[int](pairToIntArray(firstPair))
+		secondSet := shared.NewSet[int](pairToIntArray(secondPair))
 
 		if firstSet.IsSubsetOf(secondSet) || secondSet.IsSubsetOf(firstSet) {
 			count = count + 1
@@ -46,8 +46,8 @@ func Day4(input string) {
 		firstPair := strings.Split(pair, ",")[0]
 		secondPair := strings.Split(pair, ",")[1]
 
-		firstSet := shared.NewIntSet(pairToIntArray(firstPair))
-		secondSet := shared.NewIntSet(pairToIntArray(secondPair))
+		firstSet := shared.NewSet[int](pairToIntArray(firstPair))
+		secondSet := shared.NewSet[int](pairToIntArray(secondPair))
 
 		if firstSet.Intersection(secondSet).Size() > 0 {
 			count = count + 1
